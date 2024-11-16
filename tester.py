@@ -1,9 +1,13 @@
-import geo.utils as utils
+import math
 
-a,b=3,4
-c=utils.pythagoras(a,b)
-prinnt('c=',c)
+def calculate_circle_properties(radius):
+    circumference = 2 * math.pi * radius
+    area = math.pi * radius ** 2
+    return circumference, area
 
-r=10
-area=utils.circle(r)
-print('area=',area)
+radius = 5.0
+
+circumference, area = calculate_circle_properties(radius)
+
+print(f"c = {circumference}")
+print(f"area = {area}")
