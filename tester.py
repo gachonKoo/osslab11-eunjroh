@@ -1,16 +1,9 @@
-import math
+import geo.utils as utils
 
-# 반지름 값 설정
-radius = 5.0
+a,b=3,4
+c=utils.pythagoras(a,b)
+prinnt('c=',c)
 
-# 원의 둘레와 면적 계산
-circumference = 2 * math.pi * radius  # 둘레 계산
-area = math.pi * radius ** 2  # 면적 계산
-
-
-print(f"c = {radius}")
-print(f"area = {area}")
-expected-output: |-
-  c = 5.0
-  area = 314.1592653589793
-
+r=10
+area=utils.circle(r)
+print('area=',area)
