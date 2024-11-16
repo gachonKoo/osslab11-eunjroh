@@ -7,7 +7,7 @@ radius = 5.0
 circumference = 2 * math.pi * radius  # 둘레 계산
 area = math.pi * radius ** 2  # 면적 계산
 
-# 결과 출력
+
 print(f"c = {radius}")
 print(f"area = {area}")
 expected-output: |-
