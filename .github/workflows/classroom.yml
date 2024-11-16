@@ -1,5 +1,5 @@
 name: Autograding Tests
-on:
+'on':
   - push
   - repository_dispatch
 permissions:
@@ -13,11 +13,28 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
       - name: Run Test
         id: test
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: test
+          test-name: "circle-calculation"
           setup-command: ""
           command: python tester.py
           input: ""
@@ -25,10 +42,11 @@ jobs:
             c = 5.0
             area = 314.1592653589793
           comparison-method: contains
-          timeout: 10
+          timeout: 20
+
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
           TEST_RESULTS: "${{ steps.test.outputs.result }}"
         with:
-          runners: test
+          runners: "github-classroom"
