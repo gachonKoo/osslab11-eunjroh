@@ -62,3 +62,14 @@ jobs:
           TEST_RESULTS: "${{ steps.test.outputs.result }}"
         with:
           runners: "github-classroom"
+      import traceback
+try:
+    # 테스트 코드
+    c = 5.0
+    area = 3.141592653589793 * c ** 2
+    print(f"c = {c}")
+    print(f"area = {area}")
+except Exception as e:
+    print("Error during test execution:")
+    traceback.print_exc()
+
