@@ -1,4 +1,3 @@
-python tester.py
 import math
 
 # 반지름 값 설정
