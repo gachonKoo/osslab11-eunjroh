@@ -1,13 +1,13 @@
-import math
+import geo.utils as utils
+import math 
+a, b = 3, 4
 
-def calculate_circle_properties(radius):
-    circumference = 2 * math.pi * radius
-    area = math.pi * radius ** 2
-    return circumference, area
+c = 2 * math.pi * a  # 둘레 계산: 2 * π * 반지름
 
-radius = 5.0
+print('c=', c)
 
-circumference, area = calculate_circle_properties(radius)
+r = 10
 
-print(f"c = {circumference}")
-print(f"area = {area}")
+area = math.pi * r ** 2  # 면적 계산: π * 반지름^2
+
+print('area=', area)
