@@ -21,31 +21,12 @@ jobs:
         with:
           python-version: '3.x'
 
-      # 3. 종속성 캐싱 (pip 설치 속도 최적화)
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      # 4. 종속성 설치
-      - name: Install dependencies
-        run: pip install --no-cache-dir -r requirements.txt
-
-      # 5. Python 최적화 설정
-      - name: Optimize Python Execution
-        run: |
-          export PYTHONUNBUFFERED=1
-          export PYTHONOPTIMIZE=2
-
-      # 6. 테스트 실행
+      # 3. 테스트 실행
       - name: Run Test
         id: test
         uses: classroom-resources/autograding-io-grader@v1
         with:
-          test-name: "circle-calculation"
+          test-name: test
           setup-command: ""
           command: python tester.py
           input: ""
@@ -55,21 +36,10 @@ jobs:
           comparison-method: contains
           timeout: 10
 
-      # 7. 결과 보고
+      # 4. 결과 보고
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          TEST_RESULTS: "${{ steps.test.outputs.result }}"
+          TEST_RESULTS: "${{steps.test.outputs.result}}"
         with:
-          runners: "github-classroom"
-      import traceback
-try:
-    # 테스트 코드
-    c = 5.0
-    area = 3.141592653589793 * c ** 2
-    print(f"c = {c}")
-    print(f"area = {area}")
-except Exception as e:
-    print("Error during test execution:")
-    traceback.print_exc()
-
+          runners: test
