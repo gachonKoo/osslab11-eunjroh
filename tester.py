@@ -1,5 +1,5 @@
 import geo.utils as utils
-import math  # math 모듈을 임포트하여 pi를 사용할 수 있게 합니다.
+import math 
 
 a, b = 3, 4
 
