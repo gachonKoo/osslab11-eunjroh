@@ -1,12 +1,14 @@
-import math
+- name: Run Test
+  id: test
+  uses: classroom-resources/autograding-io-grader@v1
+  with:
+    test-name: test
+    setup-command: ""
+    command: python tester.py
+    input: ""
+    expected-output: |-
+      c = 5.0
+      area = 314.1592653589793
+    comparison-method: contains
+    timeout: 10
 
-# 반지름 값 설정
-radius = 5.0
-
-# 원의 둘레와 면적 계산
-circumference = 2 * math.pi * radius  # 둘레 계산
-area = math.pi * radius ** 2  # 면적 계산
-
-# 결과 출력
-print(f"c = {radius}")
-print(f"area = {area}")
